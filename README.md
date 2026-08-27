@@ -47,7 +47,7 @@ code block, i.e. an example, not a reference.
 There is nothing to install. One file, Python 3.8+, no third-party packages.
 
 ```bash
-curl -O https://raw.githubusercontent.com/YOUR-USERNAME/vault-audit/main/vault_audit.py
+curl -O https://raw.githubusercontent.com/julianangst/vault-audit/main/vault_audit.py
 python3 vault_audit.py
 ```
 
