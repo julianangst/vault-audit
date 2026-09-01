@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Audit - Enterprise Infrastructure Security</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+            text-align: left;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            border-left: 4px solid #667eea;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            color: #667eea;
+            font-size: 18px;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .cta-section {
+            margin: 50px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .pricing-tier {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-tier:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .pricing-tier.featured {
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .tier-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .tier-price {
+            font-size: 42px;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .tier-currency {
+            font-size: 18px;
+            vertical-align: super;
+        }
+
+        .tier-description {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .tier-features {
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 13px;
+        }
+
+        .tier-features li {
+            list-style: none;
+            padding: 8px 0;
+            color: #666;
+        }
+
+        .tier-features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f4ff;
+        }
+
+        .testimonial {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            font-style: italic;
+            color: #666;
+            border-left: 4px solid #667eea;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 12px;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .tagline {
+                font-size: 16px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .pricing-tiers {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🔐 VAULT</div>
+            <h1>Infrastructure Security Audit</h1>
+            <p class="tagline">Deep-dive security analysis for enterprise infrastructure</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Security Checks</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">48h</div>
+                <div class="stat-label">Delivery</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">€50</div>
+                <div class="stat-label">Starting Price</div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🔍 Vulnerability Assessment</h3>
+                <p>Comprehensive scanning of your infrastructure for known vulnerabilities and misconfigurations.</p>
+            </div>
+            <div class="feature">
+                <h3>📊 Risk Analysis</h3>
+                <p>Detailed risk scoring and prioritization of security issues by severity and exploitability.</p>
+            </div>
+            <div class="feature">
+                <h3>🛡️ Remediation Path</h3>
+                <p>Actionable recommendations with step-by-step guidance for fixing identified issues.</p>
+            </div>
+            <div class="feature">
+                <h3>📈 Compliance Check</h3>
+                <p>Mapping to relevant compliance frameworks (ISO 27001, SOC 2, GDPR, etc.)</p>
+            </div>
+            <div class="feature">
+                <h3>🔐 Access Control Review</h3>
+                <p>Detailed analysis of IAM policies, permissions, and access patterns.</p>
+            </div>
+            <div class="feature">
+                <h3>📋 Executive Report</h3>
+                <p>Professional PDF report suitable for board presentations and auditors.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Choose Your Vault Audit Package</h2>
+            <p style="color: #666; margin-top: 10px;">Professional infrastructure security assessment tailored to your needs</p>
+
+            <div class="pricing-tiers">
+                <div class="pricing-tier">
+                    <div class="tier-name">Basic Audit</div>
+                    <div class="tier-price"><span class="tier-currency">€</span>50</div>
+                    <div class="tier-description">Perfect for small deployments</div>
+                    <ul class="tier-features">
+                        <li>Infrastructure scanning</li>
+                        <li>Vulnerability report</li>
+                        <li>Basic recommendations</li>
+                        <li>48-hour delivery</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/7sY3cugOC7tj31gdGscEw01" class="btn btn-primary">Start Audit</a>
+                </div>
+
+                <div class="pricing-tier featured">
+                    <div class="tier-name">⭐ Standard Audit</div>
+                    <div class="tier-price"><span class="tier-currency">€</span>100</div>
+                    <div class="tier-description">Most popular choice</div>
+                    <ul class="tier-features">
+                        <li>Full vulnerability assessment</li>
+                        <li>Risk analysis & scoring</li>
+                        <li>Remediation roadmap</li>
+                        <li>Executive summary</li>
+                        <li>48-hour delivery</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/dRm28q69YeVL1XcgSEcEw02" class="btn btn-primary">Start Audit</a>
+                </div>
+
+                <div class="pricing-tier">
+                    <div class="tier-name">Premium Audit</div>
+                    <div class="tier-price"><span class="tier-currency">€</span>150</div>
+                    <div class="tier-description">For complex infrastructure</div>
+                    <ul class="tier-features">
+                        <li>Complete infrastructure review</li>
+                        <li>Advanced risk analysis</li>
+                        <li>Compliance mapping</li>
+                        <li>Access control review</li>
+                        <li>Detailed remediation guide</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/6oU14mdCq4h78lA6e0cEw03" class="btn btn-primary">Start Audit</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial">
+            "Our infrastructure security posture improved dramatically after the Vault Audit. The recommendations were practical and immediately actionable." — Enterprise DevOps Lead
+        </div>
+
+        <footer>
+            <p>Vault Audit © 2026 | Enterprise Infrastructure Security</p>
+            <p style="margin-top: 10px; font-size: 12px;">Delivered by qualified security professionals | 48-hour turnaround | 100% confidential</p>
+        </footer>
+    </div>
+</body>
+</html>
